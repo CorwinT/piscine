@@ -2,12 +2,27 @@ language: node_js
 node_js:
 - '0.10'
 before_script:
-  - "gem install travis-artifacts"
+- gem install travis-artifacts
 env:
   global:
-  - "ARTIFACTS_AWS_REGION=eu-west-1"
-  - "ARTIFACTS_S3_BUCKET=atlantisjs"
+  - ARTIFACTS_AWS_REGION=eu-west-1
+  - ARTIFACTS_S3_BUCKET=atlantisjs
   - secure: cpbazcmjfWrvrFuvSS2XpvZYcEwVbdUZU12jMWVxTQsf6zn00D4IiFchujYNisR7Xp2VkjTzBr42lH5Kfpn9dhqRwo+KE09M4BJwVISTbNvMU7yY0tbF8vzFmYvIKyKp43/iGDe0O/5a4Wq2Mp+yV6fzs6yWoSlmsRwDOtsPyTI=
   - secure: NoBXOPcOrKOJXF1SAtTMiYvdo7A3tYOhB2S1xaMRwfmGp91GYVdhwogGB7zJQDdzLO2AHQU/pWhOK+jVypM8qW7ezdD1JTmwW5Y6Bn6uwx1tXERUZAmGQOKkJeSul8kSI6t3qEUdYIYtZnXSVB8e9aG+4Q/o5HI+8x8qb+0N5eQ=
+  - secure: j+i6ADlS3B4agDXqcF6uyIsgdfUGNNbt86MYspAHdiy3EW8n2mfeB9LIRxtynK1Bw+XoKMAQOttJBjFiFvNuCbM2oXGwTT4u+NLf8+RvupOl0Cv0ZKpuiOB+18wCTgrVHL8qGMhMbE3V91ov1fE2Y2pFIcCeQa9nRIc2Kg+BXKs=
+  - GH_OWNER: <%= owner %>
+  - GH_PROJECT_NAME: <%= projectName %>
+  
 after_script:
-  - "travis-artifacts upload --path build"
+  - travis-artifacts upload --path build
+  - if git checkout master; then git checkout -b master; fi
+  - git rm -r .
+  - cp -R ../build/* .
+  - cp ../build/.* .
+  - git add -f .
+  - git config user.name "CorwinT"
+  - git commit -am "add build files to master [ci skip]"
+  # Any command that using GH_OAUTH_TOKEN must pipe the output to /dev/null to not expose your oauth token
+  - git push https://<%="${GH_OAUTH_TOKEN}"%>@github.com/<%="${GH_OWNER}"%>/<%="${GH_PROJECT_NAME}"%> HEAD:<%= destinationBranch %> > /dev/null 2>&1
+  
+  
