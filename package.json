@@ -3,7 +3,9 @@
   "private": false,
   "devDependencies": {
     "grunt": "~0.4.1",
-    "grunt-cli": "~0.1.9"
+    "grunt-cli": "~0.1.9",
+    "grunt-contrib-jasmine": "~0.5.1",
+    "matchdep": "~0.1.2"
   },
   "engines": {
     "node": ">=0.8.0"
