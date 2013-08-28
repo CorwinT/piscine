@@ -16,11 +16,9 @@ env:
 after_script:
   - travis-artifacts upload --path build
   - if git checkout master; then git checkout -b master; fi
-  - git rm -r .
-  - cp -R ../build/* .
-  - cp ../build/.* .
-  - git add -f .
-  - git config user.name "CorwinT"
+  - cp build/testfile.txt output.txt
+  - git add -f output.txt
+  - git config user.name "travis-ci"
   - git config user.email "corwin.tomkinson@adfero.co.uk"
   - git commit -am "add build files to master [ci skip]"
   # Any command that using GH_OAUTH_TOKEN must pipe the output to /dev/null to not expose your oauth token
