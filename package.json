@@ -7,6 +7,10 @@
   "engines": {
     "node": ">=0.8.0"
   },
+  "repository": { 
+	"type" : "git", 
+	"url" : "https://github.com/CorwinT/piscine"
+  },
   "scripts": {
     "test": "grunt test --verbose"
   }
