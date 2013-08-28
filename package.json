@@ -2,14 +2,15 @@
   "name": "piscine",
   "private": false,
   "devDependencies": {
-    "grunt": "~0.4.1"
+    "grunt": "~0.4.1",
+    "grunt-cli": "~0.1.9"
   },
   "engines": {
     "node": ">=0.8.0"
   },
-  "repository": { 
-	"type" : "git", 
-	"url" : "https://github.com/CorwinT/piscine"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CorwinT/piscine"
   },
   "scripts": {
     "test": "grunt test --verbose"
