@@ -1,4 +1,4 @@
-piscine
+Piscine
 =======
 
 A project for testing file upload to s3 with travis. 
